@@ -13,17 +13,19 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+
+        Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->string('first_name');
-            $table->string('last_name')->nullable();
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('country');
+            $table->string('city');
+            $table->string('district');
+            $table->string('area');
+            $table->string('street');
+            $table->string('house');
+            $table->string('postcode');
             $table->timestamps();
-
-            $table->foreignId('shipping_id')->nullable()->constrained('locations');
         });
     }
 
@@ -34,6 +36,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('locations');
     }
 };
