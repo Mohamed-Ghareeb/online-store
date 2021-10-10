@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Domains\Customer\Models\Concerns;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 trait HasUuid
