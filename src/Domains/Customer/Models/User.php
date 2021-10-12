@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Domains\Customer\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -27,6 +28,8 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'billing_id',
+        'shipping_id'
     ];
 
     /**
@@ -38,6 +41,26 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Billing address relation
+     *
+     * @return HasMany
+     */
+    public function billing(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    /**
+     * Default shipping address relation
+     *
+     * @return HasMany
+     */
+    public function shipping(): BelongsTo
+    {
+        return $this->belongsTo(Address::class);
+    }
 
     /**
      * Addresses relation
