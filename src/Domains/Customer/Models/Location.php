@@ -42,6 +42,8 @@ class Location extends Model
      */
     protected static function newFactory(): Factory
     {
-       return new LocationFactory();
+       return LocationFactory::new();
     }
+
+
 }
