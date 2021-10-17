@@ -14,6 +14,11 @@ class Location extends Model
 {
     use HasFactory, HasUuid;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
     protected $fillable = [
         'uuid',
         'house',

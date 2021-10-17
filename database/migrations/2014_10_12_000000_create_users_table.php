@@ -13,6 +13,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
@@ -20,8 +22,8 @@ return new class extends Migration {
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('billing_id')->constrained('addresses')->nullable();
-            $table->foreignId('shipping_id')->constrained('addresses')->nullable();
+            $table->foreignId('billing_id')->nullable()->constrained('addresses');
+            $table->foreignId('shipping_id')->nullable()->constrained('addresses');
             $table->rememberToken();
             $table->timestamps();
         });
