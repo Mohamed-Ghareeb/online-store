@@ -22,8 +22,6 @@ return new class extends Migration {
             $table->string('last_name')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->foreignId('billing_id')->nullable()->constrained('addresses');
-            $table->foreignId('shipping_id')->nullable()->constrained('addresses');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -1,16 +1,17 @@
 <?php
 declare(strict_types=1);
 
-namespace {{ namespace }};
+namespace Domains\Catalog\Models;
 
-use Database\Factories\{{ class }}Factory;
+use Database\Factories\ProductFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class {{ class }} extends Model
+class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, HasKey;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,15 @@ class {{ class }} extends Model
      * @var string[]
      */
     protected $fillable = [
-
+        'key',
+        'name',
+        'description',
+        'cost',
+        'retail',
+        'active',
+        'vat',
+        'category_id',
+        'range_id',
     ];
 
     /**
@@ -27,7 +36,8 @@ class {{ class }} extends Model
      * @var array
      */
     protected $casts = [
-
+        'active' => 'boolean',
+        'vat'    => 'boolean',
     ];
 
     /**
@@ -37,6 +47,6 @@ class {{ class }} extends Model
      */
     protected static function newFactory(): Factory
     {
-        return {{ class }}Factory::new();
+        return ProductFactory::new();
     }
 }

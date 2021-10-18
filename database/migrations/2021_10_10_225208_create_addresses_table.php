@@ -14,12 +14,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->string('label'); // home/office/head office
             $table->boolean('billing')->default(false);
-            $table->foreignId('user_id')->index();
-            $table->foreignId('location_id')->index();
+            $table->foreignId('user_id')->index()->constrained('users');
+            $table->foreignId('location_id')->index()->constrained('locations');
             $table->timestamps();
         });
     }

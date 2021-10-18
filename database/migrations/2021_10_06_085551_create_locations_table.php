@@ -14,7 +14,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        Schema::disableForeignKeyConstraints();
 
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
