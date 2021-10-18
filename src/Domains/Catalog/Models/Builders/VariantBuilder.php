@@ -13,30 +13,30 @@ class VariantBuilder extends Builder
     /**
      * Get the physical products
      *
-     * @return Builder
+     * @return self
      */
-    public function physical(): Builder
+    public function physical(): self
     {
-        $this->where('shippable', true);
+        return $this->where('shippable', true);
     }
 
     /**
      * Get the digital products
      *
-     * @return Builder
+     * @return self
      */
-    public function digital(): Builder
+    public function digital(): self
     {
-        $this->where('shippable', false);
+        return $this->where('shippable', false);
     }
 
     /**
      * Get the downloadable products
      *
-     * @return Builder
+     * @return self
      */
-    public function downloadable(): Builder
+    public function downloadable(): self
     {
-        $this->digital();
+        return $this->digital();
     }
 }

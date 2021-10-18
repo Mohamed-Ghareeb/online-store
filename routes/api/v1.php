@@ -26,5 +26,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
  Route::prefix('products')->as('products.')->group(function() {
     Route::get('/', IndexController::class)->name('all');
-    Route::get('/{product}', ShowController::class)->name('show');
+    Route::get('/{product_key}', ShowController::class)->name('show');
  });

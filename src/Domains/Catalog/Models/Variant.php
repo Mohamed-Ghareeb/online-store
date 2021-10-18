@@ -53,7 +53,6 @@ class Variant extends Model
         return $this->belongsTo(Product::class);
     }
 
-
     /**
      * Create a new factory instance for the model.
      *
