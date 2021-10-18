@@ -23,6 +23,8 @@ return new class extends Migration {
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
+            $table->foreignId('billing_id')->index()->nullable()->constrained('addresses')->nullOnDelete();
+            $table->foreignId('shipping_id')->index()->nullable()->constrained('addresses')->nullOnDelete();
             $table->timestamps();
         });
     }

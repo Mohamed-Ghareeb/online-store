@@ -26,8 +26,8 @@ return new class extends Migration
              * @todo Move default to confi/env variable
              */
             $table->boolean('vat')->defualt(config('shop.vat'));
-            $table->foreignId('category_id')->index()->constrained();
-            $table->foreignId('range_id')->nullable()->index()->constrained();
+            $table->foreignId('category_id')->nullable()->index()->constrained()->nullOnDelete();
+            $table->foreignId('range_id')->nullable()->index()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }

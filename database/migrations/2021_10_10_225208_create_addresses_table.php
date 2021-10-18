@@ -20,8 +20,8 @@ return new class extends Migration
             $table->id();
             $table->string('label'); // home/office/head office
             $table->boolean('billing')->default(false);
-            $table->foreignId('user_id')->index()->constrained('users');
-            $table->foreignId('location_id')->index()->constrained('locations');
+            $table->foreignId('user_id')->index()->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('location_id')->index()->nullable()->constrained('locations')->nullOnDelete();
             $table->timestamps();
         });
     }
