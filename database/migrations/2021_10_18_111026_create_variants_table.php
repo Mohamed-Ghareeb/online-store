@@ -14,20 +14,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('variants', function (Blueprint $table) {
             $table->id();
             $table->string('key')->unique();
             $table->string('name');
-            $table->mediumText('description');
             $table->unsignedInteger('cost')->default(0);
             $table->unsignedInteger('retail')->default(0);
+            $table->unsignedInteger('height')->nullable();
+            $table->unsignedInteger('width')->nullable();
+            $table->unsignedInteger('length')->nullable();
+            $table->unsignedInteger('weight')->nullable();
             $table->boolean('active')->defualt(true);
-            /**
-             * @todo Move default to confi/env variable
-             */
-            $table->boolean('vat')->defualt(config('shop.vat'));
-            $table->foreignId('category_id')->nullable()->index()->constrained()->nullOnDelete();
-            $table->foreignId('range_id')->nullable()->index()->constrained()->nullOnDelete();
+            $table->boolean('shippable')->defualt(false);
+            $table->foreignId('product_id')->nullable()->index()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -39,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('variants');
     }
 };

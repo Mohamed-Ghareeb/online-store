@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace Domains\Shared\Models\Builders\Shared;
 
+use Illuminate\Database\Eloquent\Builder;
+
 trait HasActiveScope
 {
     /**
      * Get the active records
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function active(): Builder
     {
@@ -18,7 +20,7 @@ trait HasActiveScope
     /**
      * Get the inactive records
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function inactive(): Builder
     {
