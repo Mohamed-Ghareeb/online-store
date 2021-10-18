@@ -9,8 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Domains\Shared\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\relationships\BelongsTo;
+use Illuminate\Database\Eloquent\relationships\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -43,7 +43,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Billing address relation
+     * Billing address relationship
      *
      * @return HasMany
      */
@@ -53,7 +53,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Default shipping address relation
+     * Default shipping address relationship
      *
      * @return HasMany
      */
@@ -63,7 +63,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Addresses relation
+     * Addresses relationship
      *
      * @return HasMany
      */

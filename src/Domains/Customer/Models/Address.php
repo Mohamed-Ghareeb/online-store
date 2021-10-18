@@ -7,7 +7,7 @@ use Database\Factories\AddressFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\relationships\BelongsTo;
 
 class Address extends Model
 {
@@ -35,7 +35,7 @@ class Address extends Model
     ];
 
     /**
-     * User relation
+     * User relationship
      *
      * @return BelongsTo
      */
@@ -45,7 +45,7 @@ class Address extends Model
     }
 
     /**
-     * Location relation
+     * Location relationship
      *
      * @return BelongsTo
      */
