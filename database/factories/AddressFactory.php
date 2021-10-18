@@ -32,7 +32,7 @@ class AddressFactory extends Factory
                 'Mums House',
             ]),
 
-            'billing' => $this->faker->boolean,
+            'billing' => $this->faker->boolean(),
             'user_id' => User::factory()->create()->id,
             'location_id' => Location::factory()->create()->id,
         ];
