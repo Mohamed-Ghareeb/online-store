@@ -25,16 +25,16 @@ class AddressFactory extends Factory
     public function definition(): array
     {
         return [
-            'label' => $this->faker->randomElement([
+            'label'         => $this->faker->randomElement([
                 'Home',
                 'Office',
                 'Head Office',
                 'Mums House',
             ]),
 
-            'billing' => $this->faker->boolean(),
-            'user_id' => User::factory()->create()->id,
-            'location_id' => Location::factory()->create()->id,
+            'billing'       => $this->faker->boolean(),
+            'user_id'       => User::factory()->create()->id,
+            'location_id'   => Location::factory()->create()->id,
         ];
     }
 
