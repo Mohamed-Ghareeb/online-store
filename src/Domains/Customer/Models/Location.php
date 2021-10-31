@@ -7,7 +7,7 @@ use Database\Factories\LocationFactory;
 use Illuminate\Database\Eloquent\Model;
 use Domains\Shared\Models\Concerns\HasUuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\relationships\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use \Illuminate\Database\Eloquent\Factories\Factory;
 
 class Location extends Model

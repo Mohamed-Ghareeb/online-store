@@ -3,15 +3,14 @@ declare(strict_types=1);
 
 namespace Domains\Customer\Models;
 
-use Database\Factories\CartFactory;
-use Domains\Customer\States\Statuses\CartStatus;
+use Database\Factories\CartItemFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 
-class Cart extends Model
+class CartItem extends Model
 {
     use HasFactory, HasKey;
 
@@ -21,35 +20,39 @@ class Cart extends Model
      * @var string[]
      */
     protected $fillable = [
-
+        'key',
+        'purchasable_id',
+        'purchasable_type',
+        'cart_id',
     ];
 
     /**
-     * The attributes that should be cast.
+     * Cart relationship
      *
-     * @var array
+     * @return BelongsTo
      */
-    protected $casts = [
-        'status' => CartStatus::class . ':nullable'
-    ];
-
-    /**
-     * Items relationship
-     *
-     * @return HasMany
-     */
-    public function items(): HasMany
+    public function cart()
     {
-        return $this->hasMany(CartItem::class);
+        return $this->belongsTo(Cart::class);
+    }
+
+    /**
+     * Purchasable relationship
+     *
+     * @return MorphTo
+     */
+    public function purchasable(): MorphTo
+    {
+        return $this->morphTo();
     }
 
     /**
      * Create a new factory instance for the model.
      *
-     * @return Factory
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
     protected static function newFactory(): Factory
     {
-        return CartFactory::new();
+        return CartItemFactory::new();
     }
 }

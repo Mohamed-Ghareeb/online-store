@@ -14,14 +14,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carts', function (Blueprint $table) {
+        Schema::create('order_lines', function (Blueprint $table) {
             $table->id();
             $table->string('key')->unique();
-            $table->string('status'); // pending / completed / abandoned
-            $table->string('coupon')->nullable();
-            $table->unsignedInteger('total')->default(0);
-            $table->unsignedInteger('reduction')->default(0);
-            $table->foreignId('user_id')->index()->nullable()->constrained()->nullOnDelete();
+            $table->string('name');
+            $table->mediumText('description')->nullable();
+            $table->unsignedInteger('retail')->default(0);
+            $table->unsignedInteger('cost')->default(0);
+            $table->unsignedInteger('quantity')->default(0);
+
+            $table->morphs('purchasable');
+
+            $table->foreignId('order_id')->index()->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -33,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carts');
+        Schema::dropIfExists('order_lines');
     }
 };

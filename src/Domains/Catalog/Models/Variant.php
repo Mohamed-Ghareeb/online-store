@@ -4,10 +4,13 @@ declare(strict_types=1);
 namespace Domains\Catalog\Models;
 
 use Database\Factories\VariantFactory;
+use Domains\Customer\Models\CartItem;
+use Domains\Customer\Models\OrderLine;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use JustSteveKing\KeyFactory\Models\Concerns\HasKey;
 
 class Variant extends Model
@@ -51,6 +54,26 @@ class Variant extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * Purchases for cart items relationship
+     *
+     * @return MorphMany
+     */
+    public function purchases(): MorphMany
+    {
+        return $this->morphMany(CartItem::class, 'purchasable');
+    }
+
+    /**
+     * Purchases for orders relationship
+     *
+     * @return MorphMany
+     */
+    public function orders(): MorphMany
+    {
+        return $this->morphMany(OrderLine::class, 'purchasable');
     }
 
     /**
